@@ -1,6 +1,6 @@
 import type { App, Component } from 'vue'
 // import * as FlowBite from 'flowbite-vue'
-import * as FlowBite from '../../../flowbite-vue'
+import * as FlowBite from '../../../sqrcz-flowbite-vue/dist/flowbite-vue'
 
 const availableComponents = [
   'FwbAccordion',
@@ -51,19 +51,19 @@ const availableComponents = [
   'FwbTooltip',
 
   // untested components:
-  // 'FwbFileInput',
-  // 'FwbFlowbiteThemable',
-  // 'FwbFlowbiteThemableChild',
-  // 'FwbFooter',
-  // 'FwbInput',
-  // 'FwbRadio',
-  // 'FwbRange',
-  // 'FwbSelect',
-  // 'FwbSidebar',
-  // 'FwbSlotListener',
+  'FwbFileInput',
+  'FwbFlowbiteThemable',
+  'FwbFlowbiteThemableChild',
+  'FwbFooter',
+  'FwbInput',
+  'FwbRadio',
+  'FwbRange',
+  'FwbSelect',
+  'FwbSidebar',
+  'FwbSlotListener',
   'FwbTextarea',
   // 'FwbToastProvider',   ???
-  // 'FwbToggle',
+  'FwbToggle',
 ]
 
 const flowBiteComponents: Component[] = []

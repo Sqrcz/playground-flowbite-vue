@@ -1,3 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Configure Tailwind v4 */
+@source "../**/*.{vue,js,ts,jsx,tsx}";
+@source "../../index.html";
+@source "../../../flowbite-vue/src/**/*.{vue,js,ts,jsx,tsx}";
+
+/* Enable dark mode variant */
+@variant dark (&:where(.dark, .dark *));
