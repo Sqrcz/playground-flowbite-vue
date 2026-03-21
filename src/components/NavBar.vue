@@ -62,6 +62,8 @@ const { isDark, toggleTheme } = useDarkMode()
 </script>
 
 <style scoped>
+@reference '@/assets/main.css';
+
 .link-active {
   @apply bg-gray-900 text-white
 }

@@ -3,6 +3,7 @@ import type { App, Component } from 'vue'
 import * as FlowBite from '../../../sqrcz-flowbite-vue/dist/flowbite-vue'
 
 const availableComponents = [
+  'FwbAutocomplete',
   'FwbAccordion',
   'FwbAccordionContent',
   'FwbAccordionHeader',

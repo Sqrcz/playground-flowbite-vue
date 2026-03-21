@@ -3,7 +3,8 @@
 /* Configure Tailwind v4 */
 @source "../**/*.{vue,js,ts,jsx,tsx}";
 @source "../../index.html";
-@source "../../../flowbite-vue/src/**/*.{vue,js,ts,jsx,tsx}";
+@source "../../../sqrcz-flowbite-vue/src/**/*.{vue,js,ts,jsx,tsx}";
+/* @source "../../../flowbite-vue/dist/index.css"; */
 
 /* Enable dark mode variant */
 @variant dark (&:where(.dark, .dark *));
