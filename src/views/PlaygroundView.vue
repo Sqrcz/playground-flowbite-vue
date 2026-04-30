@@ -56,18 +56,24 @@
       />
     </div>
     <hr class="col-span-5 bg-gray-200 dark:bg-gray-600 my-8 border-0 h-px">
-    <fwb-input
-      v-model="name"
-      v-bind="elementClasses"
-      label="Input with custom classes"
-    />
+    <div>
+      <fwb-input
+        v-model="selected.input.md"
+        wrapper-class="border-amber-800 border-2 bg-amber-300 dark:bg-amber-700 dark:border-amber-300 rounded-lg p-3
+        "
+        label-class="text-xl text-amber-900 dark:text-amber-200 font-bold"
+        class="bg-amber-100 dark:bg-amber-800 border-2 border-amber-500 has-[input:focus]:border-red-500 dark:border-amber-500 dark:has-[input:focus]:border-red-500 rounded-lg has-[input:focus]:ring-1 has-[input:focus]:ring-red-500 has-[input:focus]:ring-offset-0"
+        input-class="text-amber-900 dark:text-amber-200 placeholder:text-amber-500 dark:placeholder:text-amber-400"
+        label="First name"
+        placeholder="enter your first name"
+      />
+    </div>
     <fwb-select
       v-model="selected.select.md"
       :label="`Select ${sizes[1].label}`"
       :options="countries"
       :size="sizes[1].value"
       :placeholder="`Select ${sizes[1].label}`"
-      v-bind="elementClasses"
     />
   </div>
 </template>
