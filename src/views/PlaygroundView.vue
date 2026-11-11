@@ -132,11 +132,101 @@
         wrapper-class="border-2 border-amber-700 dark:border-green-400 bg-amber-300 dark:bg-green-800 rounded-lg px-3 pb-5 pt-15"
       />
     </div>
+    <!-- Components whose CSS lives in flowbite-vue/index.css (#467). -->
+    <section class="col-span-6 border-t border-gray-200 dark:border-gray-700 pt-6 grid grid-cols-3 gap-6">
+      <div class="flex flex-col gap-2">
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Button group (outer corners only)</h3>
+        <fwb-button-group>
+          <fwb-button color="alternative">Profile</fwb-button>
+          <fwb-tooltip>
+            <template #trigger>
+              <fwb-button color="alternative">Settings</fwb-button>
+            </template>
+            <template #content>Tooltip inside a group</template>
+          </fwb-tooltip>
+          <fwb-dropdown text="Messages" color="alternative">
+            <p class="p-2 text-sm">Dropdown inside a group</p>
+          </fwb-dropdown>
+        </fwb-button-group>
+      </div>
+      <div class="flex flex-col gap-2">
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Tooltip (dark and light themes)</h3>
+        <div class="flex gap-2">
+          <fwb-tooltip>
+            <template #trigger><fwb-button>Dark tooltip</fwb-button></template>
+            <template #content>Dark theme</template>
+          </fwb-tooltip>
+          <fwb-tooltip theme="light">
+            <template #trigger><fwb-button color="light">Light tooltip</fwb-button></template>
+            <template #content>Light theme</template>
+          </fwb-tooltip>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Dropdown (to-bottom transition)</h3>
+        <fwb-dropdown text="Open dropdown">
+          <fwb-list-group>
+            <fwb-list-group-item>Dashboard</fwb-list-group-item>
+            <fwb-list-group-item>Settings</fwb-list-group-item>
+          </fwb-list-group>
+        </fwb-dropdown>
+      </div>
+      <div class="flex flex-col gap-2">
+        <fwb-range v-model="range" :label="`Range (thumb color from index.css): ${range}`" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Progress (indeterminate animation)</h3>
+        <fwb-progress indeterminate label="Loading" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Toast</h3>
+        <fwb-toast-provider transition="slide-left">
+          <toast-trigger />
+        </fwb-toast-provider>
+      </div>
+    </section>
+    <section id="form-controls" class="col-span-6 grid grid-cols-3 gap-6 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+      <h2 class="col-span-3 text-lg font-semibold text-gray-900 dark:text-white">Form controls (#472)</h2>
+      <div class="flex flex-col gap-2">
+        <fwb-checkbox v-model="checks.a" label="Checked" />
+        <fwb-checkbox v-model="checks.b" label="Unchecked" />
+        <fwb-checkbox v-model="checks.a" disabled label="Disabled checked" />
+        <fwb-checkbox v-model="checks.a" class="text-amber-600 dark:text-green-500" label="text-amber-600" />
+        <fwb-checkbox ref="indeterminate" label="Indeterminate" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <fwb-radio v-model="radio" name="r" value="one" label="One" />
+        <fwb-radio v-model="radio" name="r" value="two" label="Two" />
+        <fwb-radio v-model="radio" disabled name="r3" value="one" label="Disabled checked" />
+        <fwb-radio v-model="radio" class="text-amber-600 dark:text-green-500" name="r2" value="one" label="text-amber-600" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <fwb-toggle v-model="checks.a" label="Toggle" />
+        <fwb-select v-model="radio" :options="[{ value: 'one', name: 'One' }, { value: 'two', name: 'Two' }]" label="Select" />
+        <fwb-select v-model="radio" underline :options="[{ value: 'one', name: 'One' }, { value: 'two', name: 'Two' }]" label="Select underline" />
+      </div>
+      <fwb-file-input v-model="file" label="File (md)" />
+      <fwb-file-input v-model="file" size="sm" label="File (sm)" />
+      <fwb-input v-model="date" type="date" label="Date" />
+      <fwb-input v-model="text" placeholder="Placeholder" label="Text" />
+      <fwb-textarea v-model="text" placeholder="Placeholder" label="Textarea" />
+      <fwb-range v-model="range" disabled label="Range disabled" />
+    </section>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+
+import ToastTrigger from '../components/ToastTrigger.vue'
+
+const checks = ref({ a: true, b: false })
+const radio = ref('one')
+const file = ref(null)
+const date = ref('')
+const text = ref('')
+const indeterminate = ref(null)
+onMounted(() => { indeterminate.value.$el.querySelector('input').indeterminate = true })
 
 const sizes = [
   { label: 'Small', value: 'sm' },
@@ -184,5 +274,7 @@ const countries = [
 ]
 
 const toggle = ref(false)
+const check = ref(false)
+const range = ref(50)
 
 </script>
