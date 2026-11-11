@@ -1,6 +1,6 @@
 <template>
   <nav-bar />
-  <main class="bg-white dark:bg-gray-800 shadow m-5 sm:p-6 px-4 py-5 rounded-lg overflow-hidden">
+  <main class="bg-white dark:bg-gray-800 shadow m-5 sm:p-6 px-4 py-5 rounded-lg">
     <router-view />
   </main>
 </template>

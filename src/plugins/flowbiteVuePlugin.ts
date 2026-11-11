@@ -1,79 +1,20 @@
 import type { App, Component } from 'vue'
-// import * as FlowBite from 'flowbite-vue'
-import * as FlowBite from '../../../sqrcz-flowbite-vue/dist/flowbite-vue'
+// Resolves to the local ../sqrcz-flowbite-vue checkout via `file:` in package.json,
+// through the package's own `exports` map, exactly as a consumer would import it.
+import * as FlowBite from 'flowbite-vue'
 
-const availableComponents = [
-  'FwbAutocomplete',
-  'FwbAccordion',
-  'FwbAccordionContent',
-  'FwbAccordionHeader',
-  'FwbAccordionPanel',
-  'FwbAlert',
-  'FwbAvatar',
-  'FwbAvatarStack',
-  'FwbAvatarStackCounter',
-  'FwbBadge',
-  'FwbBreadcrumb',
-  'FwbBreadcrumbItem',
-  'FwbButton',
-  'FwbButtonGroup',
-  'FwbCard',
-  'FwbCarousel',
-  'FwbCheckbox',
-  'FwbDropdown',
-  'FwbListGroup',
-  'FwbListGroupItem',
-  'FwbModal',
-  'FwbNavbar',
-  'FwbNavbarCollapse',
-  'FwbNavbarLink',
-  'FwbNavbarLogo',
-  'FwbP',
-  'FwbPagination',
-  'FwbProgress',
-  'FwbRating',
-  'FwbSpinner',
-  'FwbTab',
-  'FwbTabs',
-  'FwbTable',
-  'FwbTableBody',
-  'FwbTableCell',
-  'FwbTableHead',
-  'FwbTableHeadCell',
-  'FwbTableRow',
-  'FwbTimeline',
-  'FwbTimelineBody',
-  'FwbTimelineContent',
-  'FwbTimelineItem',
-  'FwbTimelinePoint',
-  'FwbTimelineTime',
-  'FwbTimelineTitle',
-  'FwbToast',
-  'FwbTooltip',
+// Register every exported component (Fwb*, FlowbiteThemable*) so new components
+// show up without editing a hand-maintained list. Composables like useToast are skipped.
+const isComponentName = (name: string) => /^(Fwb|FlowbiteThemable)/.test(name)
 
-  // untested components:
-  'FwbFileInput',
-  'FwbFlowbiteThemable',
-  'FwbFlowbiteThemableChild',
-  'FwbFooter',
-  'FwbInput',
-  'FwbRadio',
-  'FwbRange',
-  'FwbSelect',
-  'FwbSidebar',
-  'FwbSlotListener',
-  'FwbTextarea',
-  // 'FwbToastProvider',   ???
-  'FwbToggle',
-]
-
-const flowBiteComponents: Component[] = []
+const flowBiteComponents: Component[] = Object.entries(FlowBite)
+  .filter(([name]) => isComponentName(name))
+  .map(([, component]) => component as Component)
 
 const flowbiteVuePlugin = (app: App) => {
-  availableComponents.forEach(componentName => {
-    app.component(componentName, (FlowBite as Record<string, Component>)[componentName] as Component)
-    flowBiteComponents.push((FlowBite as Record<string, Component>)[componentName] as Component)
-  })
+  Object.entries(FlowBite)
+    .filter(([name]) => isComponentName(name))
+    .forEach(([name, component]) => app.component(name, component as Component))
 }
 
 export {

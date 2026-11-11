@@ -14,5 +14,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+    // flowbite-vue is symlinked from ../sqrcz-flowbite-vue; without this its
+    // `import 'vue'` would resolve to that repo's own copy of Vue.
+    dedupe: ['vue'],
   },
 })
